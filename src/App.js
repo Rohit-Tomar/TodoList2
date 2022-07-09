@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import AddNewExpenseButton from "./components/Expenses/AddNewExpenseButton";
 
 const DUMMY_EXPENSES = [
   {
@@ -26,6 +27,7 @@ const DUMMY_EXPENSES = [
 
 function App() {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [addNewExpense, setAddNewExpense] = useState(0);
 
   const addExpenseHandler = expense => {
     setExpenses(prevExpenses => {
@@ -35,7 +37,15 @@ function App() {
 
   return (
     <div className="App">
-      <NewExpense onAddExpense={addExpenseHandler} />
+      {addNewExpense === 0 && (
+        <AddNewExpenseButton setAddNewExpense={setAddNewExpense} />
+      )}
+      {addNewExpense === 1 && (
+        <NewExpense
+          onAddExpense={addExpenseHandler}
+          setAddNewExpense={setAddNewExpense}
+        />
+      )}
       <Expenses expenses={expenses} />
     </div>
   );

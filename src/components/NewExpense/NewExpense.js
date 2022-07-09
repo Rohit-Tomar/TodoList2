@@ -8,11 +8,14 @@ const NewExpense = props => {
       ...enteredExpenseData,
     };
     props.onAddExpense(expenseData);
-    // console.log("Data in NewExpense", expenseData);
   };
+
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      <ExpenseForm
+        onSaveExpenseData={saveExpenseDataHandler}
+        setAddNewExpense={props.setAddNewExpense}
+      />
     </div>
   );
 };
